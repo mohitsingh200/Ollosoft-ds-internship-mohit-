@@ -4,12 +4,14 @@ Introduction
 Hello, my name is Mohit Singh.
 I am a 2nd year student.
 
+
 Goal
 I want to learn:
  Python
  Data Analysis
  Machine Learning
  Stock Market Analytics
+
 
 Weekly Plan
 Week 1: Python Foundations
