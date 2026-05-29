@@ -1,11 +1,11 @@
 # Ollosoft-ds-internship-mohit
 
-Introduction
+## Introduction
 Hello, my name is Mohit Singh.
 I am a 2nd year student.
 
 
-Goal
+## Goal
 I want to learn:
  Python
  Data Analysis
@@ -13,7 +13,7 @@ I want to learn:
  Stock Market Analytics
 
 
-Weekly Plan
+## Weekly Plan
 Week 1: Python Foundations
 Week 2: NumPy and Pandas
 Week 3: Data Visualization
