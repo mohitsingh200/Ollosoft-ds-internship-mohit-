@@ -1,0 +1,27 @@
+WEEK 1 JOURNAL
+
+In Week 1, I learned:
+
+1. Git and GitHub basics
+2. VS Code setup
+3. Python variables and loops
+4. Functions 
+5. File handling
+6.Object-oriented programming
+7. Reading CSV stock data using built-in Python
+
+Mini Project:
+I analyzed Reliance stock closing prices using Python without Pandas.
+
+Skills Improved:
+1. Problem solving
+2. Debugging
+3.Python logic building
+4. GitHub workflow
+
+Challenges Faced:
+1.CSV file path errors
+2.Git push conflicts
+3.Float conversion issues
+
+Overall, Week 1 helped me understand Python fundamentals and real-world data handling.
