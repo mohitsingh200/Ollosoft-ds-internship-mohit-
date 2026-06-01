@@ -1,54 +1,82 @@
 import csv
 
 try:
-    with open("week01/Day06/reliance_prices02.csv", "r") as file:
 
-        reader = csv.DictReader(file)
+    file = open("RELIANCE.csv", "r")
 
-        closing_prices = []
-        dates = []
+    reader = csv.DictReader(file)
 
-        for row in reader:
+    closing_prices = []
+    dates = []
 
-            close_price = float(row["CLOSE"].replace(",", ""))
+    for row in reader:
 
-            closing_prices.append(close_price)
-            dates.append(row["DATE"])
+        close_price = float(row["Close"])
 
-        total_days = len(closing_prices)
+        closing_prices.append(close_price)
+        dates.append(row["Date"])
 
-        average_price = sum(closing_prices) / total_days
+    total_days = len(closing_prices)
 
-        highest_price = max(closing_prices)
-        lowest_price = min(closing_prices)
+    average_price = sum(closing_prices) / total_days
 
-        highest_index = closing_prices.index(highest_price)
-        lowest_index = closing_prices.index(lowest_price)
+    highest_price = max(closing_prices)
+    lowest_price = min(closing_prices)
 
-        highest_date = dates[highest_index]
-        lowest_date = dates[lowest_index]
+    highest_index = closing_prices.index(highest_price)
+    lowest_index = closing_prices.index(lowest_price)
 
-        first_price = closing_prices[-1]
-        last_price = closing_prices[0]
+    highest_date = dates[highest_index]
+    lowest_date = dates[lowest_index]
 
-        total_return = ((last_price - first_price) / first_price) * 100
+    first_price = closing_prices[0]
+    last_price = closing_prices[-1]
 
-        print("\n===== RELIANCE STOCK REPORT =====\n")
+    total_return = (
+        (last_price - first_price)
+        / first_price
+    ) * 100
 
-        print("Total Trading Days :", total_days)
+    print("\n===== STOCK ANALYSIS REPORT =====\n")
 
-        print("Average Closing Price :", round(average_price, 2))
+    print("Total Trading Days :", total_days)
 
-        print("\nHighest Closing Price :", highest_price)
-        print("Highest Price Date :", highest_date)
+    print(
+        "Average Closing Price :",
+        round(average_price, 2)
+    )
 
-        print("\nLowest Closing Price :", lowest_price)
-        print("Lowest Price Date :", lowest_date)
+    print(
+        "\nHighest Closing Price :",
+        highest_price
+    )
 
-        print("\nTotal Return (%) :", round(total_return, 2))
+    print(
+        "Highest Price Date :",
+        highest_date
+    )
+
+    print(
+        "\nLowest Closing Price :",
+        lowest_price
+    )
+
+    print(
+        "Lowest Price Date :",
+        lowest_date
+    )
+
+    print(
+        "\nTotal Return (%) :",
+        round(total_return, 2)
+    )
+
+    file.close()
 
 except FileNotFoundError:
-    print("Error: CSV file not found!")
+
+    print("CSV file not found!")
 
 except Exception as e:
-    print("Unexpected Error:", e)
+
+    print("Error:", e)

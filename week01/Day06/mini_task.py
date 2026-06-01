@@ -1,54 +1,106 @@
+"""
+Week 1 Mini-Task: Stock Analyser (no Pandas)
+Stock: RELIANCE.NS  |  Period: Jan–Feb 2025
+Author: [Your Name]  |  Date: 2025-01-xx
+"""
+
 import csv
+import os
 
-try:
-    with open("week01/Day06/reliance_prices02.csv", "r") as file:
+# ── Config ────────────────────────────────────────────────────────────────────
+CSV_FILE = os.path.join(os.path.dirname(__file__), "RELIANCE.csv")
+CLOSE_COL = "Close"
+DATE_COL  = "Date"
 
-        reader = csv.DictReader(file)
 
-        closing_prices = []
-        dates = []
+# ── Helpers ───────────────────────────────────────────────────────────────────
+def load_csv(filepath: str) -> list[dict]:
+    """Read CSV into a list of row-dicts (all values are strings)."""
+    with open(filepath, newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        return list(reader)
 
-        for row in reader:
 
-            close_price = float(row["CLOSE"].replace(",", ""))
+def to_float(value: str) -> float:
+    return float(value.strip())
 
-            closing_prices.append(close_price)
-            dates.append(row["DATE"])
 
-        total_days = len(closing_prices)
+# ── Analysis functions ────────────────────────────────────────────────────────
+def total_trading_days(rows: list[dict]) -> int:
+    return len(rows)
 
-        average_price = sum(closing_prices) / total_days
 
-        highest_price = max(closing_prices)
-        lowest_price = min(closing_prices)
+def average_close(rows: list[dict]) -> float:
+    prices = [to_float(r[CLOSE_COL]) for r in rows]
+    return sum(prices) / len(prices)
 
-        highest_index = closing_prices.index(highest_price)
-        lowest_index = closing_prices.index(lowest_price)
 
-        highest_date = dates[highest_index]
-        lowest_date = dates[lowest_index]
+def highest_close(rows: list[dict]) -> tuple[float, str]:
+    best = max(rows, key=lambda r: to_float(r[CLOSE_COL]))
+    return to_float(best[CLOSE_COL]), best[DATE_COL]
 
-        first_price = closing_prices[-1]
-        last_price = closing_prices[0]
 
-        total_return = ((last_price - first_price) / first_price) * 100
+def lowest_close(rows: list[dict]) -> tuple[float, str]:
+    worst = min(rows, key=lambda r: to_float(r[CLOSE_COL]))
+    return to_float(worst[CLOSE_COL]), worst[DATE_COL]
 
-        print("\n===== RELIANCE STOCK REPORT =====\n")
 
-        print("Total Trading Days :", total_days)
+def total_return_pct(rows: list[dict]) -> float:
+    first_close = to_float(rows[0][CLOSE_COL])
+    last_close  = to_float(rows[-1][CLOSE_COL])
+    return ((last_close - first_close) / first_close) * 100
 
-        print("Average Closing Price :", round(average_price, 2))
 
-        print("\nHighest Closing Price :", highest_price)
-        print("Highest Price Date :", highest_date)
+# ── Display ───────────────────────────────────────────────────────────────────
+DIVIDER   = "─" * 52
+BOLD_DIV  = "═" * 52
 
-        print("\nLowest Closing Price :", lowest_price)
-        print("Lowest Price Date :", lowest_date)
+def print_report(rows: list[dict]) -> None:
+    days            = total_trading_days(rows)
+    avg             = average_close(rows)
+    high, high_date = highest_close(rows)
+    low,  low_date  = lowest_close(rows)
+    ret_pct         = total_return_pct(rows)
 
-        print("\nTotal Return (%) :", round(total_return, 2))
+    first_close = to_float(rows[0][CLOSE_COL])
+    last_close  = to_float(rows[-1][CLOSE_COL])
+    period      = f"{rows[0][DATE_COL]}  →  {rows[-1][DATE_COL]}"
 
-except FileNotFoundError:
-    print("Error: CSV file not found!")
+    print()
+    print(BOLD_DIV)
+    print("  📈  RELIANCE INDUSTRIES — STOCK ANALYSIS")
+    print(BOLD_DIV)
+    print(f"  Period  : {period}")
+    print(DIVIDER)
 
-except Exception as e:
-    print("Unexpected Error:", e)
+    # (a) Total trading days
+    print(f"  (a) Total Trading Days     :  {days}")
+
+    # (b) Average closing price
+    print(f"  (b) Average Closing Price  :  ₹{avg:>10.2f}")
+
+    # (c) Highest / Lowest
+    print(f"  (c) Highest Closing Price  :  ₹{high:>10.2f}  [{high_date}]")
+    print(f"      Lowest  Closing Price  :  ₹{low:>10.2f}  [{low_date}]")
+    print(f"      Price Range            :  ₹{high - low:>10.2f}")
+
+    # (d) Total return
+    arrow = "▲" if ret_pct >= 0 else "▼"
+    print(f"  (d) Total Return           :  {arrow} {abs(ret_pct):>7.2f}%")
+    print(f"      Entry Price            :  ₹{first_close:>10.2f}  [{rows[0][DATE_COL]}]")
+    print(f"      Exit  Price            :  ₹{last_close:>10.2f}  [{rows[-1][DATE_COL]}]")
+    print(f"      Absolute Gain          :  ₹{last_close - first_close:>10.2f}")
+
+    print(BOLD_DIV)
+    print()
+
+
+# ── Entry point ───────────────────────────────────────────────────────────────
+if __name__ == "__main__":
+    rows = load_csv(CSV_FILE)
+
+    if not rows:
+        print("ERROR: CSV file is empty or could not be loaded.")
+        raise SystemExit(1)
+
+    print_report(rows)
