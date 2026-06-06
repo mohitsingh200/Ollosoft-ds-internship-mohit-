@@ -1,0 +1,13 @@
+Week 2 Day 6
+
+Downloaded 5 years of NIFTY 50 index data using yfinance.
+Calculated daily returns and created monthly statistics.
+Computed average monthly close, monthly return percentage,
+monthly volatility and maximum drawdown.
+Saved the final summary to monthly_nifty_summary.csv.
+
+Observation:
+The NIFTY index showed steady long-term growth with some
+months experiencing higher volatility and deeper drawdowns.
+Monthly returns varied significantly during market corrections
+and recovery periods.
