@@ -143,8 +143,8 @@ non-linear feature interactions.
 
 ## How to reproduce from scratch
 
-bash
+```bash
 *pip install -r requirements.txt
 *python run_pipeline.py
 *streamlit run app.py
-
+```
