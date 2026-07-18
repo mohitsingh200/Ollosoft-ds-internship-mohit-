@@ -1,8 +1,7 @@
 # Indian Equities Analytics & Direction Predictor
 ### Capstone Final Report
 
-**Author:** [Your name]
-**Course:** [Course name] — Week 8 Capstone
+**Author:** Mohit Singh 
 **Reviewer:** Ravi Agarwal
 
 ---
