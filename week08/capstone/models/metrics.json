@@ -1,0 +1,23 @@
+{
+  "best_model": "gradient_boosting",
+  "results": {
+    "logistic_regression": {
+      "accuracy": 0.5067812798471824,
+      "precision": 0.5238678893578046,
+      "recall": 0.5393963700219337,
+      "f1": 0.5310176499744663
+    },
+    "random_forest": {
+      "accuracy": 0.5033428844317096,
+      "precision": 0.519040554835704,
+      "recall": 0.5429498040649172,
+      "f1": 0.5298008489767713
+    },
+    "gradient_boosting": {
+      "accuracy": 0.5077363896848138,
+      "precision": 0.5207248191987739,
+      "recall": 0.6107462185930969,
+      "f1": 0.5613562567791919
+    }
+  }
+}
