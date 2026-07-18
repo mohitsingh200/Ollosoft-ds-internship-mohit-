@@ -5,9 +5,7 @@ A portfolio-grade capstone: an end-to-end, fully reproducible pipeline that pull
 features, trains and compares 3 ML classifiers to predict next-day price direction,
 and serves the results through an interactive Streamlit dashboard.
 
-> ⚠️ **Educational project only — not investment advice.** Short-horizon direction
-> prediction on liquid large-caps is a hard, close-to-random-walk problem; see
-> [Limitations](#limitations--future-work) below.
+
 
 ## Universe
 
