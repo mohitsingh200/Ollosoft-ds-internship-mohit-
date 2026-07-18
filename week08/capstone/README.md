@@ -27,13 +27,10 @@ python run_pipeline.py          # fetches data, builds features, trains + saves 
 streamlit run app.py            # launches the interactive dashboard
 ```
 
-`run_pipeline.py` is the single-command reproducibility entry point required by the
+`run_pipeline.py` is the single-command reproducibility entry point required by the week08 
 capstone spec. It runs `src/data.py -> src/features.py -> src/model.py` in sequence
 and writes `data/processed/features.csv` and `models/best_model.joblib`.
 
-If you don't have internet access (or `yfinance` isn't installed), the pipeline
-automatically falls back to a deterministic synthetic OHLCV generator so the
-**entire pipeline still runs end-to-end** — see [Data](#data) below.
 
 ## Repo structure
 
@@ -146,13 +143,8 @@ non-linear feature interactions.
 
 ## How to reproduce from scratch
 
-```bash
+bash
 pip install -r requirements.txt
 python run_pipeline.py
 streamlit run app.py
-```
 
-That's it — one command builds the whole pipeline, one command launches the dashboard.
-
-
-```
